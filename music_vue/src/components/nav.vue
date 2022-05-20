@@ -2,7 +2,7 @@
     <div>
         <ul class="top_nav">
             <li>
-                <router-link to="/" exact-active-class="active">首页</router-link>
+                <router-link to="/home" exact-active-class="active">首页</router-link>
             </li>
             <li>
                 <router-link to="/topic">榜单</router-link>
