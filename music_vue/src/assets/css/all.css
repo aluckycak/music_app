@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: "微软雅黑";
+}
+
+img {
+    border: none;
+    max-width: 100%;
+    vertical-align: middle;
+}

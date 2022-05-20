@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="navtop">
         <ul class="top_nav">
             <li>
                 <router-link to="/home" exact-active-class="active">首页</router-link>
@@ -32,10 +32,14 @@ export default {
         flex: 1;
         text-align: center;
         padding-top: 10px;
+        list-style-type: none;
+
 
         a {
             display: block;
             padding-bottom: 8px;
+            text-decoration: none;
+            color: #000;
         }
 
         .active {
@@ -43,5 +47,10 @@ export default {
 
         }
     }
+}
+
+.navtop {
+    background-color: #f8f8f8;
+    padding: 0px;
 }
 </style>
