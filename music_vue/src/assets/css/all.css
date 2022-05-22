@@ -14,3 +14,7 @@ img {
     max-width: 100%;
     vertical-align: middle;
 }
+
+body {
+    background-color: #f8f8f8;
+}
