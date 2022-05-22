@@ -1,87 +1,49 @@
 <template>
-    <div class="collection-block">
-        <div class="block-padding">
-            <div class="title">
-                <h3>新歌榜</h3>
-                <a href="">更多</a>
-            </div>
-            <div class="list">
-                <div class="item">
-                    <div class="img-warpper">
-                        <img class="rpic"
-                            src="http://p4.music.126.net/i928-hIdPinzbW1p00sThQ==/109951167429598505.jpg?param=50y50&amp;quality=100">
-                    </div>
-                    <div class="main">我以为你不会出现</div>
-                    <div class="gary">告五人</div>
-                </div>
-                <div class="item">
-                    <div class="img-warpper">
-                        <img class="rpic"
-                            src="http://p4.music.126.net/i928-hIdPinzbW1p00sThQ==/109951167429598505.jpg?param=50y50&amp;quality=100">
-                    </div>
-                    <div class="main">我以为你不会出现</div>
-                    <div class="gary">告五人</div>
-                </div>
-                <div class="item">
-                    <div class="img-warpper">
-                        <img class="rpic"
-                            src="http://p4.music.126.net/i928-hIdPinzbW1p00sThQ==/109951167429598505.jpg?param=50y50&amp;quality=100">
-                    </div>
-                    <div class="main">我以为你不会出现</div>
-                    <div class="gary">告五人</div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <van-swipe :autoplay="3000" lazy-render>
+        <van-swipe-item v-for="image in state.images" :key="image">
+            <img :src="image.pic" />
+        </van-swipe-item>
+    </van-swipe>
+
 </template>
 
 <script>
+import axios from 'axios'
+import { reactive, onMounted } from 'vue';
 export default {
+    setup() {
+        const state = reactive({
+            images: [
+                'https://cdn.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
+                'https://cdn.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
+            ]
+        });
+        onMounted(() => {
+            axios.get('http://localhost:3000/banner?type=2').then((res) => {
+                console.log(res);
+                state.images = res.data.banners
+            })
+        })
+        return { state };
+    },
+};
 
-}
 </script>
 
-<style scoped>
-.collection-block {
-    background-color: #f8f8f8;
-    padding: 5px 0;
-    height: 45px;
-}
+<style scoped lang="less">
+.vant-swipe {
+    width: 100%;
+    padding: 3rem;
 
-.block-padding {
-    padding: 10px;
-    background-color: #fff;
-}
+    .vant-swipe-item {
+        padding: 0 0.2rem;
 
-.title {
-    display: flex;
-    padding-top: 10px;
-    padding-left: 15px;
-}
-
-a {
-    padding-left: 250px;
-    text-decoration: none;
-    color: rgb(176, 173, 173);
-}
-
-.list {
-    display: flex;
-}
-
-.rpic {
-    width: 100px;
-}
-
-.main {
-    font-size: 10px;
-}
-
-.gary {
-    padding-left: 28px;
-}
-
-.item {
-    padding: 7px;
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 0.2rem;
+        }
+    }
 }
 </style>
