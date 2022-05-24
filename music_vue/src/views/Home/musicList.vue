@@ -91,6 +91,15 @@ export default {
                 color: rgb(207, 47, 47);
             }
 
+
+            a {
+                display: block;
+                padding-bottom: 8px;
+                text-decoration: none;
+                color: #000;
+            }
+
+
         }
     }
 }
