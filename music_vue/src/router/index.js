@@ -29,8 +29,12 @@ const routes = [
         component: () => import("../views/search.vue")
       },
     ]
+  },
+  {
+    path: '/itemMusic',
+    name: 'itemMusic',
+    component: () => import("../views/itemMusic.vue")
   }
-
 ]
 
 const router = createRouter({

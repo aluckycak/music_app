@@ -1,16 +1,19 @@
 <template>
+    <div id="swipertop">
+        <van-swipe :autoplay="3000" lazy-render>
+            <van-swipe-item v-for="image in state.images" :key="image">
+                <img :src="image.pic" />
+            </van-swipe-item>
+        </van-swipe>
+    </div>
 
-    <van-swipe :autoplay="3000" lazy-render>
-        <van-swipe-item v-for="image in state.images" :key="image">
-            <img :src="image.pic" />
-        </van-swipe-item>
-    </van-swipe>
 
 </template>
 
 <script>
 import axios from 'axios'
 import { reactive, onMounted } from 'vue';
+import { getBanner } from '@/request/api/home';
 export default {
     setup() {
         const state = reactive({
@@ -19,11 +22,14 @@ export default {
                 'https://cdn.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
             ]
         });
-        onMounted(() => {
-            axios.get('http://localhost:3000/banner?type=2').then((res) => {
-                console.log(res);
-                state.images = res.data.banners
-            })
+        onMounted(async () => {
+            //   axios.get('http://localhost:3000/banner?type=2').then((res) => {
+            //      console.log(res);
+            //      state.images = res.data.banners
+            //   })
+            let res = await getBanner();
+            state.images = res.data.banners
+            console.log(res);
         })
         return { state };
     },
@@ -31,18 +37,19 @@ export default {
 
 </script>
 
-<style scoped lang="less">
-.vant-swipe {
-    width: 100%;
-    padding: 3rem;
+<style  lang="less">
+#swipertop {
+    .van-swipe {
+        width: 100%;
 
-    .vant-swipe-item {
-        padding: 0 0.2rem;
+        .van-swipe-item {
+            padding-top: 15px;
 
-        img {
-            width: 100%;
-            height: 100%;
-            border-radius: 0.2rem;
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+            }
         }
     }
 }
