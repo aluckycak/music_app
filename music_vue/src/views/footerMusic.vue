@@ -1,56 +1,103 @@
 <template>
-    <div class="footerMusic">
-        <div class="footLeft">
-            <img :src="playList[playIndex].al.picUrl" alt="">
+    <div class="FooterMusic">
+        <div class="footerLeft">
+            <img :src="playList[playListIndex].al.picUrl" alt="" />
             <div>
-                <p>{{ playList[playIndex].al.name }}</p>
+                <p>{{ playList[playListIndex].name }}</p>
+                <span>横滑切换上下首哦</span>
             </div>
         </div>
-        <div class="footRight"></div>
-        <audio ref="audio" controls
-            :src="`https://music.163.com/song/media/outer/url?id=${playList[playIndex].id}.mp3`"></audio>
+        <div class="footerRight">
+            <svg class="icon liebiao" aria-hidden="true" @click="play" v-if="isbtnShow">
+                <use xlink:href="#icon-bofanganniu"></use>
+            </svg>
+            <svg class="icon liebiao" aria-hidden="true" @click="play" v-else>
+                <use xlink:href="#icon-weibiaoti--"></use>
+            </svg>
+        </div>
+        <audio ref="audio"
+            :src="`https://music.163.com/song/media/outer/url?id=${playList[playListIndex].id}.mp3`"></audio>
     </div>
 </template>
-
 <script>
-import { mapState } from 'vuex'
+import { mapMutations, mapState } from "vuex";
 export default {
-    computed: {
-        ...mapState(['playList', 'playIndex'])
-    },
-}
-</script>
 
+    computed: {
+        ...mapState(["playList", "playListIndex", "isbtnShow",]),
+    },
+    mounted() {
+        console.log(this.$refs);
+
+    },
+    updated() {
+
+    },
+    methods: {
+        play: function () {
+            // 判断音乐是否播放
+            if (this.$refs.audio.paused) {
+                this.$refs.audio.play();
+                this.updateIsbtnShow(false);
+            } else {
+                this.$refs.audio.pause();
+                this.updateIsbtnShow(true);
+            }
+        },
+        ...mapMutations([
+            "updateIsbtnShow",
+        ]),
+    },
+    watch: {
+        playList: function () {
+            if (this.isbtnShow) {
+                this.$refs.audio.autoplay = true;
+                this.updateIsbtnShow(false);
+            }
+        },
+    },
+    components: {
+
+    },
+};
+</script>
 <style lang="less" scoped>
-.footerMusic {
+.FooterMusic {
     width: 100%;
-    height: 60px;
+    height: 1.4rem;
     background-color: #fff;
     position: fixed;
     bottom: 0;
     border-top: 1px solid #999;
     display: flex;
-    padding: 10px;
+    padding: 0.2rem;
     justify-content: space-between;
 
-    .footLeft {
+    .footerLeft {
         width: 60%;
         height: 100%;
         display: flex;
         justify-content: space-around;
+        align-items: center;
 
         img {
-            width: 50px;
-            height: 50px;
+            width: 1rem;
+            height: 1rem;
             border-radius: 50%;
         }
     }
 
-    .footRight {
-        width: 30%;
+    .footerRight {
+        width: 20%;
         height: 100%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
+
+        .icon {
+            width: 0.6rem;
+            height: 0.6rem;
+        }
     }
 }
 </style>

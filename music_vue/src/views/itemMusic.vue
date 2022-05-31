@@ -12,7 +12,7 @@ import itemBottom from "../views/itemBottom.vue"
 export default {
     setup() {
         const state = reactive({
-            playlist: {},
+            playlist: [],
             itemList: []
         });
         onMounted(async () => {

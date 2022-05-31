@@ -98,7 +98,6 @@ export default {
             display: flex;
             align-items: center;
             background-color: red;
-
             border-radius: 0.4rem;
             color: #fff;
 
