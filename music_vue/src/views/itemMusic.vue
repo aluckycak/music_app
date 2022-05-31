@@ -20,10 +20,10 @@ export default {
             console.log(id);
             let res = await getMustItemList(id);
             console.log(res);
-            state.playlist = res.data.playlist;
+            state.playlist = res.data.playlist;//获取歌单
             let result = await getItemList(id);
             console.log(result);
-            state.itemList = res.data.playlist.tracks
+            state.itemList = res.data.playlist.tracks//获取歌单内歌曲
         });
         return { state }
     },
