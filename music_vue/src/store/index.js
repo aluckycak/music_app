@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
 export default createStore({
     state: {
-        itemList: [{//默认歌曲
+        playList: [{//默认歌曲
             al: {
                 id: 145303495,
                 name: "记念",
@@ -11,6 +11,17 @@ export default createStore({
             },
             id: 145303495,
         }],
-        Index: 0
-    }
+        playIndex: 0,
+    },
+    mutations: {
+        updatePlayList: function (state, value) {
+            state.playList = value
+            console.log(state.playList);
+        },
+        updatePlayListIndex: function (state, value) {
+            state.playListIndex = value
+        },
+    },
+    actions: {},
+    modules: {}
 })

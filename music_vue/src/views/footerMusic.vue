@@ -1,14 +1,14 @@
 <template>
     <div class="footerMusic">
         <div class="footLeft">
-            <img :src="itemList[Index].al.picUrl" alt="">
+            <img :src="playList[playIndex].al.picUrl" alt="">
             <div>
-                <p>{{ itemList[Index].al.name }}</p>
+                <p>{{ playList[playIndex].al.name }}</p>
             </div>
         </div>
-        <div class="footRight">|></div>
+        <div class="footRight"></div>
         <audio ref="audio" controls
-            :src="`https://music.163.com/song/media/outer/url?id=${itemList[Index].id}.mp3`"></audio>
+            :src="`https://music.163.com/song/media/outer/url?id=${playList[playIndex].id}.mp3`"></audio>
     </div>
 </template>
 
@@ -16,8 +16,8 @@
 import { mapState } from 'vuex'
 export default {
     computed: {
-        ...mapState(['itemList', 'Index'])
-    }
+        ...mapState(['playList', 'playIndex'])
+    },
 }
 </script>
 

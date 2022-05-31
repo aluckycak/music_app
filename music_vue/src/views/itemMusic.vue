@@ -23,7 +23,7 @@ export default {
             state.playlist = res.data.playlist;//获取歌单
             let result = await getItemList(id);
             console.log(result);
-            state.itemList = res.data.playlist.tracks//获取歌单内歌曲
+            state.itemList = result.data.playlist.tracks//获取歌单内歌曲
         });
         return { state }
     },
