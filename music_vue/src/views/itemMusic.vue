@@ -7,8 +7,8 @@
 import { useRoute } from 'vue-router'
 import { onMounted, reactive } from 'vue'
 import { getMustItemList, getItemList } from '@/request/api/item'
-import itemTop from "../views/itemTop.vue"
-import itemBottom from "../views/itemBottom.vue"
+import itemTop from "../components/itemTop.vue"
+import itemBottom from "../components/itemBottom.vue"
 export default {
     setup() {
         const state = reactive({

@@ -15,12 +15,14 @@ export default createStore({
             name: "雨爱（抖音版）",
             ar: [{ name: "灏灏灏仔" }]
         }],
+
         playListIndex: 0, //默认下标为0
         isbtnShow: true, //暂停按钮的显示
     },
     mutations: {
         updateIsbtnShow: function (state, value) {
             state.isbtnShow = value
+            console.log(state.isbtnShow);
         },
         pushPlayList: function (state, value) {
             state.playList.push(value)
@@ -32,7 +34,6 @@ export default createStore({
         updatePlayListIndex: function (state, value) {
             state.playListIndex = value
         },
-
 
     },
     actions: {},

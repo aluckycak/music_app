@@ -22,15 +22,11 @@
 <script>
 import { mapMutations, mapState } from "vuex";
 export default {
-
     computed: {
         ...mapState(["playList", "playListIndex", "isbtnShow",]),
     },
     mounted() {
         console.log(this.$refs);
-
-    },
-    updated() {
 
     },
     methods: {
@@ -49,12 +45,9 @@ export default {
         ]),
     },
     watch: {
-        playList: function () {
-            if (this.isbtnShow) {
-                this.$refs.audio.autoplay = true;
-                this.updateIsbtnShow(false);
-            }
-        },
+        isbtnShow: function () {
+            this.isbtnShow = this.isbtnShow
+        }
     },
     components: {
 

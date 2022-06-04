@@ -6,8 +6,7 @@
 <style lang="scss">
 </style>
 <script>
-import { computed } from '@vue/runtime-core'
-import footerMusicVue from './views/footerMusic.vue'
+import footerMusicVue from './components/footerMusic.vue'
 export default {
   mounted() {
     this.$router.push('/home')
